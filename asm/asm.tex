@@ -1,0 +1,53 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{listings}
+
+\begin{document}
+
+\title{Assembly Language Notes}
+\author{Kirill Kozlov}
+\date{\today}
+\maketitle
+
+\section{x86 Assembly Guide}
+Some text ... 
+\subsection{Registers}
+\paragraph{}
+Modern (i.e. 386 and beyond) x86 processors have eight 32-bit general purpose registers.
+
+\subsection{Memory and Addressing Modes}
+fdsfds
+
+\subsection{Instructions}
+
+\subsection{Calling Convention}
+
+\begin{lstlisting}[language=C]
+int	i = 0;
+\end{lstlisting}
+
+\newpage
+\section{x86\_64 Assembly Guide}
+fdsjfds
+\subsection{Registers}
+\subsection{Memory and Addressing}
+\subsection{Instructions}
+\subsection{Calling Convention}
+\begin{itemize}
+\item Registers \%rbp, \%rbx and \%r12 through \%r15 belong to the calling function and the called function is required to preserve their values.
+\item The conventional use of \%rbp as a frame pointer for the stack frame may be avoided by using \%rsp to index into the stack frame. This technique saves two instructions in the prologue and epilogue and makes one additional general-purpose register (\%rbp) available.
+\item Argument classification
+\begin{itemize}
+\item \textsc{pointer}
+\item \textsc{integer}
+\item \textsc{SSE}
+\item \textsc{SSEUP}
+\item \textsc{x87, x87UP}
+\end{itemize}
+\end{itemize}
+\newpage
+\pagenumbering{roman}
+\tableofcontents
+\pagenumbering{arabic}
+
+
+\end{document}

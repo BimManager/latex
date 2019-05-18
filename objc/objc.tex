@@ -1,0 +1,61 @@
+\documentclass{article}
+\usepackage{listings}
+
+\begin{document}
+
+\section{Build Task Execution Order}
+\begin{enumerate}
+\item Compile *.swift (swiftc)
+\item Compile *.m (clang)
+\item Compile *.storyboard (ibtool)
+\item Compile *.xcasset (actool)
+\item Process Info.plist (plutil)
+\item Linking (ld)
+\end{enumerate}
+
+\section{Setting Constraints Programmatically}
+There are three style:
+\begin{itemize}
+\item Achor Style
+\item NSLayoutConstraint
+\item Visual Language Format
+\end{itemize}
+
+\lstset{numbers=left}
+\lstset{language=[Objective]C}
+\begin{lstlisting}[frame=single]
+id		item1;
+id		item2;
+NSDictionary	*views;
+id		constraints;
+
+/* Regardless of the style chosen */
+[item1 setTranslatedAutoresizingMaskIntoConstraints:NO];
+[item2 setTranslatedAutoresizingMaskIntoConstraints:NO];
+
+/* Anchor Style */
+[item1.centerXAnchor
+  constraintEqualToAnchor:item2.centerXAnchor]
+  .active = YES;
+
+/* LayoutConstraint Style */
+[NSLayoutConstraint 
+  constraintWithItem:item1
+  attribute:NSLayoutAttributeCenterX
+  relatedBy:NSLayoutRelationEqual
+  toItem:item2
+  attribute:NSLayoutAttributeCenterX
+  multiplier:1.0f
+  constant:1.0f].active = YES;
+
+/* Visual Language Format */
+views = NSDictionaryOfVariableindings(item1, item2);
+constraints = [NSLayoutConstraint
+  constraintsWithVisualFormat:@"H:|-50-[item1]-100-[item2]-50-|"
+  options:0
+  metrics:NULL
+  views:views];
+[NSLayoutConstraints activateConstraints:constraints];
+\end{lstlisting}
+
+\end{document}

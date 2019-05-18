@@ -1,0 +1,39 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{listings}
+
+% % adds a comment
+% \\ starts a new line
+% vspace{20pt} - adds a vertical space of 20pt
+% \newpage inserts a new page
+
+\begin{document}
+\author{Kirill Kozlov}
+\date{\today}
+\title{Unix}
+\maketitle
+
+\section{bash Profile}
+bash sources from the following files in that order:
+\begin{itemize}
+\item \~{}/.bash\_profile
+\item \~{}/.bash\_login
+\item \~{}/.profile
+\item \~{}/.bashrc (if started up as an interactive shell)
+\end{itemize}
+
+\section{Commands}
+\begin{tabular}{|c|c|}
+\cline{1-2}
+\textbf{command} & \textbf{description} \\
+\cline{1-2}
+info & a helper command \\
+
+
+\end{tabular}
+
+\newpage
+\tableofcontents
+
+
+
+\end{document}
