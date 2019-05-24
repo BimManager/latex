@@ -44,6 +44,76 @@ fdsjfds
 \item \textsc{x87, x87UP}
 \end{itemize}
 \end{itemize}
+
+\section{AT\&T vs Intel Syntax}
+\begin{tabular}{|c|c|}
+\hline
+\lstset{language=[x86masm]Assembler}
+as & nasm
+\\
+\hline
+\begin{lstlisting}
+.text
+movq	%rax, %rcx
+movq	$0x2a, %rax
+movq	foo(%rip), %rax	# content
+leaq	foo(%rip), %rax	# address
+movabs	$foo, %rax 	# address
+.data
+foo:	.quad 0
+\end{lstlisting}
+&
+\begin{lstlisting}
+section .text
+mov	rcx, rax
+mov	rax, 2ah
+mov	rax, [rel foo]	; content
+mov	rax, foo 	; address
+mov	rax, [abs foo]	; address
+section .data
+foo	dw 42
+bar	db 0
+\end{lstlisting}
+\\
+\hline
+\end{tabular}
+
+\newpage
+\section{Code Snippets}
+\lstset{language=[x86masm]Assembler}
+\textsc{if statement}
+\begin{lstlisting}[frame=single]
+if:
+	<condition code>
+        jcc	else
+then:
+	<then logic code>
+        jmp	end
+else:
+	<else logic code>
+end:
+\end{lstlisting}
+\textsc{while loop}
+\begin{lstlisting}[frame=single]
+	<code before the loop>
+	mov rcx, 2ah
+loop1:
+	<code to loop through>
+        loop loop1
+        <code to execute after loop>
+\end{lstlisting}
+\textsc{for loop}
+\begin{lstlisting}[frame=single]
+for:
+	<condition code>
+	jcc forcode
+        jmp end
+forcode:
+	<for loop code>
+        jmp for
+end:
+\end{lstlisting}
+
 \newpage
 \pagenumbering{roman}
 \tableofcontents
