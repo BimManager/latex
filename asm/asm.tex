@@ -52,6 +52,17 @@ fdsjfds
 as & nasm
 \\
 \hline
+ s = single (32-bit floating point) \\
+ w = word (16 bits) \\
+ l = long (32-bit integer or 64-bit floating point) \\
+ q = quad (64 bits) \\ 
+ t = ten bytes (80-bit floating point) \\
+\\
+\hline
+seg:dis(b\_reg, i\_reg, sf) &
+seg[b\_reg + dis + i\_reg * sf]
+\\
+\hline
 \begin{lstlisting}
 .text
 movq	%rax, %rcx
@@ -113,6 +124,25 @@ forcode:
         jmp for
 end:
 \end{lstlisting}
+
+\newpage
+\section{Reverse Engineering}
+\subsection{Setting up a VM for Debugging}
+
+\begin{lstlisting}[frame=single]
+vboxmanage import *.ova
+
+bcdedit /debug on
+bcdedit /dbgsettings serial debugport:1 baudrate:115200
+
+vboxmanage modifyvm "MSEdge - Win10" --uart1 0x3f8 4
+vboxmanage modifyvm "MSEdge - Win10" ^ 
+--uartmode1 server \\.\pipe\com1
+
+kd -k com1:pipe,port=\\.\pipe\com1,resets=0,reconnect
+
+\end{lstlisting}
+
 
 \newpage
 \pagenumbering{roman}
